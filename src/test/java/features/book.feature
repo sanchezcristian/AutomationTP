@@ -3,9 +3,10 @@ Feature: Curso de automation
 Scenario Outline: Search a book
 
 Given I enter search <search>
-When I click Search button
-Then The search result must be greater than cero
+And I click Search button
+When I sort the list results by <order>
+Then The search results must be ordered by <order>
 
 Examples:
-|search 							 |
-| Sailor moon tomo 7   | 
+|search 							 | order 					|
+| Sailor moon tomo 7   | price_low_high |

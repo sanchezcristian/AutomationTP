@@ -11,9 +11,7 @@ public class HomePage {
 	private By searchButton = By.className("header-search-btn");
 	
 	public HomePage(WebDriver driver) {
-		
 		this.driver = driver;
-		
 	}
 	
 	public void enterSearch (String searchItem) {

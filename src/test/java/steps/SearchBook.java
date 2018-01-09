@@ -29,16 +29,21 @@ public class SearchBook {
 
 	}
 
-	@When("^I click Search button")
+	@Given("^I click Search button")
 	public void i_click_Search_button() {
 	    homePage.searchButton();
 	    
 	}
+	
+	@When("^I sort the list results by (.*)$")
+	public void i_sort_the_list_result_by (String orderType) throws InterruptedException{
+		customPage.iSortTheSearch(orderType);
+	}
 
-	@Then("^The search result must be greater than cero")
-	public void the_search_result_must_be_greater_than_cero () {
-	    customPage.assertSearch();
-	    System.out.println("Test Results: " + customPage.assertSearch());
+	@Then("^The search results must be ordered by (.*)$")
+	public void the_search_results_must_be_ordered_by (String orderType) {
+	    customPage.assertSearch(orderType);
+	    //System.out.println("Test Results: " + customPage.assertSearch(orderType));
 		//System.out.print("RESULTS");
 	   
 	}
