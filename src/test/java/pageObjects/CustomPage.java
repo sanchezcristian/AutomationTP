@@ -13,7 +13,6 @@ import org.testng.Assert;
 
 public class CustomPage {
 	
-	private By searchResult = By.className("search-count");
 	private By sortBy = By.name("searchSortBy");
 	private By firstElement = By.className("item-img");
 	private WebDriver driver;
@@ -39,7 +38,4 @@ public class CustomPage {
 		Assert.assertEquals(select.getFirstSelectedOption().getAttribute("value"), sortOrder);
 	}
 	
-	public void printResults () {
-		//System.out.print("Test Results" + assertSearch());
-	}
 }

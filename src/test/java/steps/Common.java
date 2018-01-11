@@ -8,10 +8,12 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import utils.Context;
+import utils.MailSender;
 
 
 public class Common {
 	private Context context;
+	private MailSender mailSender = new MailSender();
 	
 	public Common (Context context) {
 		this.context = context;
@@ -39,8 +41,8 @@ public class Common {
 		final byte[] screenshot = ((TakesScreenshot) this.context.getDriver()).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
 		scenario.write("--------------------------------------------------------------");
-		//MailSender.sendMail
 		this.context.getDriver().close();
 		this.context.getDriver().quit();
+		mailSender.sendMail();
 	}
 }

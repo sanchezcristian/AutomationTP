@@ -51,9 +51,5 @@ public class SearchBook {
 	@Then("^The desctiption screen should be displayed")
 	public void the_desctiption_screen_should_be_displayed () throws InterruptedException {
 		descriptionPage.checkDescriptionPage();
-	    //customPage.assertSearch(orderResult);
-	    //System.out.println("Test Results: " + customPage.assertSearch(orderType));
-		//System.out.print("RESULTS");
-	   
 	}
 }
