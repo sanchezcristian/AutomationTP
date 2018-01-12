@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<browser>firefox</browser>
+	<recipient-email>cristiantest1234@outlook.com</recipient-email>>
+	<source-folder>C:\Users\csanchez\eclipse-workspace\AutomationTP\target\site\cucumber-pretty</source-folder>
+	<output-zip-file>Folder.zip</output-zip-file>
+</configuration>

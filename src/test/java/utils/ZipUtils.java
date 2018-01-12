@@ -11,9 +11,10 @@ import java.util.zip.ZipOutputStream;
 
 public class ZipUtils {
 	
+	private XMLReader reader = new XMLReader();
 	private List <String> fileList;
-    private static final String OUTPUT_ZIP_FILE = "Folder.zip.7z";
-    private static final String SOURCE_FOLDER = "C:\\Users\\csanchez\\eclipse-workspace\\AutomationTP\\target\\site\\cucumber-pretty"; // SourceFolder path
+    //private static final String OUTPUT_ZIP_FILE = "Folder.zip";
+    //private static final String SOURCE_FOLDER = "C:\\Users\\csanchez\\eclipse-workspace\\AutomationTP\\target\\site\\cucumber-pretty"; // SourceFolder path
 
     public ZipUtils() {
         fileList = new ArrayList < String > ();
@@ -21,13 +22,13 @@ public class ZipUtils {
 
     public void createZip() {
         ZipUtils appZip = new ZipUtils();
-        appZip.generateFileList(new File(SOURCE_FOLDER));
-        appZip.zipIt(OUTPUT_ZIP_FILE);
+        appZip.generateFileList(new File(reader.readNode("source-folder")));
+        appZip.zipIt(reader.readNode("output-zip-file"));
     }
 
     public void zipIt(String zipFile) {
         byte[] buffer = new byte[2048];
-        String source = new File(SOURCE_FOLDER).getName();
+        String source = new File(reader.readNode("source-folder")).getName();
         FileOutputStream fos = null;
         ZipOutputStream zos = null;
         try {
@@ -42,7 +43,7 @@ public class ZipUtils {
                 ZipEntry ze = new ZipEntry(source + File.separator + file);
                 zos.putNextEntry(ze);
                 try {
-                    in = new FileInputStream(SOURCE_FOLDER + File.separator + file);
+                    in = new FileInputStream(reader.readNode("source-folder") + File.separator + file);
                     int len;
                     while ((len = in .read(buffer)) > 0) {
                         zos.write(buffer, 0, len);
@@ -81,7 +82,7 @@ public class ZipUtils {
     }
 
     private String generateZipEntry(String file) {
-        return file.substring(SOURCE_FOLDER.length() + 1, file.length());
+        return file.substring(reader.readNode("source-folder").length() + 1, file.length());
     }
 
 }

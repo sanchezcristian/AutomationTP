@@ -22,10 +22,10 @@ public class Common {
 	
 	@Before
 	public void InitializeTest() {
-		  //driver.navigate().to("http://newtours.demoaut.com/");
+		
 		this.context.initializeDriver();
 		this.context.getDriver().navigate().to("https://www.bookdepository.com/");
-		//this.context.getDriver().manage().window().maximize();	
+		this.context.getDriver().manage().window().maximize();	
 	}
 	
 	@After
@@ -41,8 +41,8 @@ public class Common {
 		final byte[] screenshot = ((TakesScreenshot) this.context.getDriver()).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
 		scenario.write("--------------------------------------------------------------");
-		this.context.getDriver().close();
 		this.context.getDriver().quit();
+		//this.context.getDriver().close();
 		mailSender.sendMail();
 	}
 }

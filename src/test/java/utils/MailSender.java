@@ -13,9 +13,13 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import utils.XMLReader;
+
 
 public class MailSender {
-	public static void sendMail() {
+	private XMLReader reader = new XMLReader();
+	
+	public void sendMail() {
 		Properties props = new Properties();
         props.setProperty("mail.smtp.host", "smtp.outlook.com");
         props.setProperty("mail.smtp.starttls.enable", "true");
@@ -33,13 +37,13 @@ public class MailSender {
         try {
         	zipFile.createZip();
 			message.setFrom(new InternetAddress("cristiantest1234@outlook.com"));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("ristiantest1234@outlook.com")); //CC or BCC
-			message.setSubject("Reporte del test");
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(reader.readNode("recipient-email"))); //CC or BCC
+			message.setSubject("Reporte del test 4");
 			//message.setText("Envio del reporte del test");
 			BodyPart messageBodyPart = new MimeBodyPart();
 			Multipart multipart = new MimeMultipart();
 			messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setText("Envio del reporte del test");
+			messageBodyPart.setText("Envio del reporte del test 2");
 			String filename = "C:\\Users\\csanchez\\eclipse-workspace\\AutomationTP\\Folder.zip";
 			DataSource source = new FileDataSource(filename);
 			messageBodyPart.setDataHandler(new DataHandler(source));
