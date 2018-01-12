@@ -28,7 +28,7 @@ public class MailSender {
         props.setProperty("mail.smtp.socketFactory.port", "587");
         props.setProperty("mail.user", "cristiantest1234@outlook.com");
         //props.setProperty("mail.user", "cristiantest1234@gmail.com");
-        props.setProperty("mail.password", "Password");
+        props.setProperty("mail.password", "SapoPepe");
         props.setProperty("mail.smtp.auth", "true");
         Session session = Session.getInstance(props, null);
         session.setDebug(true);
@@ -51,8 +51,7 @@ public class MailSender {
 			multipart.addBodyPart(messageBodyPart);
 			message.setContent(multipart);
 			Transport t = session.getTransport("smtp");
-			t.connect("cristiantest1234@outlook.com","Password");
-			//t.connect("cristiantest1234@gmail.com","Password");
+			t.connect("cristiantest1234@outlook.com","SapoPepe");
 			t.sendMessage(message,message.getAllRecipients());
 			t.close();
 		} catch (AddressException e) {
